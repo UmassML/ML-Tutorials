@@ -30,7 +30,8 @@ We import Tensorflow and load the MNIST data set that comes bundled with TF. The
 input_image = tf.placeholder(tf.float32, [None, 784])
 ```
 
-In TF, a placeholder is a variable that we will assign a value to later when we run a `Session`. In the parameters of `tf.placeholder` we describe the data type and the dimensionality of the placeholder. Since we want this placeholder to contain our input images, we assign the first dimension to `None` which means that the dimension can be any length. In other words, we can pump as many input images as we want into our training program. We assign the second vector to 784 which represents the 784 dimensional vector representing the 28x28 pixel values of our input image. 
+In TF, a placeholder is a variable that we will assign a value to later when we run a `Session`. In the parameters of `tf.placeholder` we describe the data type and the dimensionality of the placeholder. We want it to be floats so we can execute matrix multiplication on it later. Since we want this placeholder to contain our input images, we assign the first dimension to `None` which means that the dimension can be any length. In other words, we can pump as many input images as we want into our training program. We assign the second vector to 784 which represents the 784 dimensional vector representing the 28x28 pixel values of our input image. 
+
 
 
 
