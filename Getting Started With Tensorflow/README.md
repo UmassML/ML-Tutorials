@@ -30,14 +30,37 @@ We import Tensorflow and load the MNIST data set that comes bundled with TF. The
 input_image = tf.placeholder(tf.float32, [None, 784])
 ```
 
-In TF, a placeholder is a variable that we will assign a value to later when we run a `Session`. In the parameters of `tf.placeholder` we describe the data type and the dimensionality of the placeholder. We want it to be floats so we can execute matrix multiplication on it later. Since we want this placeholder to contain our input images, we assign the first dimension to `None` which means that the dimension can be any length. In other words, we can pump as many input images as we want into our training program. We assign the second vector to 784 which indicates the 784 dimensional vector representing the 28x28 pixel values of our input image. 
+In TF, a placeholder is a variable that will have a value later when we run a `Session`. In the parameters of `tf.placeholder` we describe the data type and the dimensionality of the placeholder. We want it to be of type float so we can execute matrix multiplication on it later. Since we want this placeholder to contain a vector representation of our input images, we assign the first dimension to `None` which means that the dimension can be any length. In other words, we can pump as many images as we want into the learning algorithm, and we assign the second vector to 784 dimensions, one for each pixel of the 28x28 image. 
+
+```python
+weights = tf.Variable(tf.zeros([784, 10]))
+```
+
+Here we declare a `tf.Variable`. A Variable is a value that can be changed by Tensorflow (and subsequently our learning algorithm). The parameter for a Variable is its initial value. tf.zeroes will fill it up with 0's in the dimensions specified. 784 for the 784 initial neurons, and 10 output neurons.
+
+```python
+bias = tf.Variable(tf.zeros([10]))
+```
+
+Instantiate ten bias nodes, one for each layer of weights.
+
+```python
+softmax_result = tf.nn.softmax(tf.matmul(input_image, weights) + bias)
+```
+
+Now it's time to implement our learning model. By using TF's built-in matrix multiplication function, we create the synapse between our input and output nodes. Tensorflow has built-in normalization functions. We use softmax regression here since we have multiple defined classes of output. (0-9) 
 
 ```python
 prediction = tf.placeholder(tf.float32, [None, 10])
 ```
 
-Here we specify a placeholder for the ten output neurons. 
+Here we declare a placeholder for our output neurons, of size 10, one for each of our output classes (the numbers 0-9).
 
+```python
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(prediction * tf.log(softmax_result), reduction_indices=[1]))
+```
+
+Now we're ready to define our loss function. This tutorial chose to implement the cross entropy loss function. 
 
 
 
