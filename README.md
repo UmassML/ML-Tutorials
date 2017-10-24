@@ -7,3 +7,4 @@ Useful links:
  - BecomingHuman tutorials: https://becominghuman.ai/tagged/tutorial
  - Tutorials by Google for beginners: https://www.youtube.com/watch?v=cKxRvEZd3Mw
  - Tensorflow Tutorials: https://learningtensorflow.com/
+ - Neural Network Playground: http://playground.tensorflow.org
